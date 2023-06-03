@@ -1,17 +1,22 @@
-from pprint import pprint
+import os
 from dotenv import load_dotenv
 
-from ring_doorbell import Ring
-
-import src.control_ring as cr
+import spring.control_ring as cr
 
 
 if __name__ == "__main__":
     load_dotenv()
 
-    ring_auth = cr.perform_ring_auth()
-    ring = Ring(ring_auth)
-    ring.update_data()
+    client = cr.connect_to_mqtt_broker(
+        os.environ["MQTT_CLIENT_ID"],
+        os.environ["MQTT_USERNAME"],
+        os.environ["MQTT_PASSWORD"],
+        os.environ["MQTT_BROKER"],
+        os.environ["MQTT_PORT"],
+    )
 
-    devices = ring.devices()
-    pprint(devices)
+    client = cr.subscribe_mqtt_broker_to_topic(client, os.environ["MQTT_TOPICS"])
+
+    client = cr.set_mqtt_broker_response_to_message(client)
+
+    client.loop_forever()
