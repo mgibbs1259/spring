@@ -31,11 +31,7 @@ def subscribe_mqtt_broker_to_topic(
         raise ValueError("Topics parameter cannot be empty")
 
     try:
-        topics = topics.split(",")
-        subscribe_topics = []
-        for i, t in enumerate(topics):
-            subscribe_topics.append((f"camera{i}", 0))
-        client.subscribe(subscribe_topics)
+        client.subscribe(topics)
         print("Successfully subscribed to MQTT topics")
     except Exception as e:
         raise Exception(f"Failed to subscribe to MQTT topics: {e}")
