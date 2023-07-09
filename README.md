@@ -9,8 +9,8 @@ If you don't have Docker already installed, follow these [instructions](https://
 1. `docker pull tsightler/ring-mqtt`
 2. Follow the Authentication section [here](<https://github.com/tsightler/ring-mqtt/wiki/Installation-(Docker)>), specifically the Acquire the Refresh Token section that has you run the following command `docker run -it --rm --mount type=bind,source=<absolute path to spring repository>,target=/data --entrypoint /app/ring-mqtt/init-ring-mqtt.js tsightler/ring-mqtt`
 3. Create a copy of .example-env file and call it .env
-4. Modify MQTT_TOPICS in the .env, filling in location ID and device ID. To get the location ID from the ring.com, login to ring.com and look at the address bar in the browser. It will look similar to https://account.ring.com/account/dashboard?l=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx with the location ID being after '?l='.
-5. `docker-compose up`
+4. You will need to modify MQTT_LOCATION_ID and MQTT_DEVICE_IDS in the .env, filling in location ID and device IDs. To get the location ID and device IDs, run `docker compose up` from within the spring directory. Then, inspect the console output and search for `Starting Device Discovery...`. For the location of interest, note the location ID (comes after `New location:` and is in `()`) in the .env file. Then for the devices of interest within the location of interest, note the device IDs (comes after `New device:` and is in `()`) in the .env file. Then, `Ctrl + C` and `docker compose down --rmi all`.
+5. Start spring using `docker compose up -d`
 
 # Development
 

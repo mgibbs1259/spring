@@ -39,13 +39,14 @@ def connect_to_mqtt_broker(
 
 
 def subscribe_mqtt_broker_to_topic(
-    client: mqtt_client.Client, topics: str
+    client: mqtt_client.Client, location_id: str, device_ids: List[str]
 ) -> mqtt_client.Client:
     """Subscribes the MQTT client to the specified topics
 
     Args:
         client (mqtt_client.Client): The connected MQTT client
-        topics (str): The topics to subscribe to
+        location_id (str): The location ID
+        device_ids (List[str]): The list of device IDs
 
     Returns:
         mqtt_client.Client: The subscribed MQTT client
@@ -56,6 +57,10 @@ def subscribe_mqtt_broker_to_topic(
     """
     if client is None:
         raise ValueError("Client parameter cannot be None")
+
+    topics = []
+    for i, device_id in enumerate(device_ids.split(",")):
+        topics.append((f"ring/{location_id}/camera/{device_id}/motion/attributes", i))
 
     if not topics:
         raise ValueError("Topics parameter cannot be empty")

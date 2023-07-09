@@ -19,7 +19,9 @@ if __name__ == "__main__":
         os.environ["MQTT_PORT"],
     )
 
-    client = cr.subscribe_mqtt_broker_to_topic(client, os.environ["MQTT_TOPICS"])
+    client = cr.subscribe_mqtt_broker_to_topic(
+        client, os.environ["MQTT_LOCATION_ID"], os.environ["MQTT_DEVICE_IDS"]
+    )
 
     client = cr.set_mqtt_broker_response_to_message(client)
 
