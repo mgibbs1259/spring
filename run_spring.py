@@ -8,8 +8,8 @@ import spring.control_ring as cr
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
-    if os.path.exists(".env-prod"):
-        load_dotenv(".env-prod")
+    if os.path.exists(".env"):
+        load_dotenv(".env")
 
     client = cr.connect_to_mqtt_broker(
         os.environ["MQTT_CLIENT_ID"],
