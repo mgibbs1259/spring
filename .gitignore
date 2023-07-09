@@ -4,3 +4,4 @@ config.json
 ring-state.json
 .pytest_cache
 .vscode
+go2rtc.yaml

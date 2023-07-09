@@ -1,13 +1,13 @@
 FROM python:3.10
 
-RUN mkdir /code
-WORKDIR /code
+RUN mkdir /spring
+WORKDIR /spring
 
-COPY spring /code/
-COPY run_spring.py /code/
+COPY spring ./spring
+COPY run_spring.py /spring/
+COPY requirements.txt /spring/
 
-COPY requirements.txt /code/
 RUN pip install --upgrade pip
-RUN pip install paho-mqtt rachiopy python-dotenv
+RUN pip install -r requirements.txt
 
 CMD ["python", "run_spring.py"]
