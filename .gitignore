@@ -5,3 +5,4 @@ ring-state.json
 .pytest_cache
 .vscode
 go2rtc.yaml
+log/mosquitto.log
