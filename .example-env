@@ -1,0 +1,6 @@
+MQTT_CLIENT_ID=spring-mqtt
+MQTT_USERNAME=spring-user
+MQTT_PASSWORD=spring-password
+MQTT_BROKER=host.docker.internal
+MQTT_PORT=1883
+MQTT_TOPICS=ring/<location ID>/camera/<device ID>/motion/attributes
