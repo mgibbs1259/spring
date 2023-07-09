@@ -5,3 +5,4 @@ MQTT_BROKER=host.docker.internal
 MQTT_PORT=1883
 MQTT_LOCATION_ID=location-id
 MQTT_DEVICE_IDS="device-id-1,device-id-2,device-id-3"
+RACHIO_API_KEY=api-key
