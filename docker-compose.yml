@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     build:
       context: $PWD
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     env_file:
       - $PWD/.env
     networks:
