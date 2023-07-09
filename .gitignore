@@ -1,2 +1,6 @@
 .env
 *__pycache__
+config.json
+ring-state.json
+.pytest_cache
+.vscode

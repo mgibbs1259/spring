@@ -1,2 +1,4 @@
 paho-mqtt
+pre-commit
+python-dotenv
 rachiopy

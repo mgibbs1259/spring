@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+
+  mosquitto:
+    image: eclipse-mosquitto
+    network_mode: host
+    volumes:
+      - ./conf:/mosquitto/conf
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+
+  ring-mqtt:
+    container_name: ring-mqtt
+    depends_on:
+      mosquitto:
+        condition: service_started
+    restart: unless-stopped
+    image: tsightler/ring-mqtt
+    ports:
+      - 8554:8554                # Enable Real-Time Streaming Protocol (RTSP) port for external media player access
+    volumes:
+      - $PWD:/data               
+    logging:                     # Limit logs to 10m and 3 files
+      options:
+        max-size: 10m
+        max-file: "3"
+    networks:
+      - spring-network
+
+  spring:
+    container_name: spring
+    depends_on:
+      ring-mqtt:
+        condition: service_started
+    restart: unless-stopped
+    build:
+      context: $PWD
+      dockerfile: Dockerfile
+    env_file:
+      - $PWD/.env-prod
+    networks:
+      - spring-network
+
+networks:
+  spring-network:

@@ -1,11 +1,15 @@
 import os
+import logging
 from dotenv import load_dotenv
 
 import spring.control_ring as cr
 
 
 if __name__ == "__main__":
-    load_dotenv()
+    logging.basicConfig(level=logging.INFO)
+
+    if os.path.exists(".env-prod"):
+        load_dotenv(".env-prod")
 
     client = cr.connect_to_mqtt_broker(
         os.environ["MQTT_CLIENT_ID"],
