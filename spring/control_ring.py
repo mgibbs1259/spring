@@ -105,6 +105,7 @@ def set_mqtt_broker_response_to_person_detected_message(
         new_last_motion_time_dt = datetime.fromisoformat(new_last_motion_time[:-1])
         time_difference = current_time - new_last_motion_time_dt
 
+        # Only run if person detected and prevent sprinklers from running multiple times for the same message
         if person_detected and time_difference <= timedelta(seconds=30):
             if current_last_motion_time != new_last_motion_time:
                 os.environ["RING_LAST_MOTION"] = new_last_motion_time
