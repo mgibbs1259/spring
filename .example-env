@@ -6,3 +6,5 @@ MQTT_PORT=1883
 MQTT_LOCATION_ID=location-id
 MQTT_DEVICE_IDS="device-id-1,device-id-2,device-id-3"
 RACHIO_API_KEY=api-key
+RACHIO_ZONE_IDS="zone-id-1,zone-id-2,zone-id-3"
+RACHIO_SECONDS=20

@@ -1,4 +1,7 @@
+import os
+import json
 import logging
+from datetime import datetime, timedelta
 from typing import Callable, List, Optional
 
 import paho.mqtt.client as mqtt_client
@@ -74,15 +77,16 @@ def subscribe_mqtt_broker_to_topic(
     return client
 
 
-def set_mqtt_broker_response_to_message(
+def set_mqtt_broker_response_to_person_detected_message(
     client: mqtt_client.Client,
     response: Optional[Callable[[str], None]] = None,
 ) -> mqtt_client.Client:
-    """Sets up the MQTT client to handle incoming messages
+    """Sets up the MQTT client to handle incoming person detected messages
 
     Args:
         client (mqtt_client.Client): The connected MQTT client
-        response (Optional[Callable[[str], None]]): Optional callback function to handle incoming messages
+        response (Optional[Callable[[str], None]]): Optional callback function to
+        handle incoming person detected messages
 
     Returns:
         mqtt_client.Client: The configured MQTT client
@@ -90,10 +94,24 @@ def set_mqtt_broker_response_to_message(
 
     def on_message(client, userdata, message):
         message_info = message.payload.decode()
+        message_info = json.loads(message_info)
         logging.info(f"Received {message_info} from {message.topic} topic")
 
-        if response is not None:
-            response(message_info)
+        person_detected = message_info["personDetected"]
+        current_last_motion_time = os.environ.get("RING_LAST_MOTION")
+        new_last_motion_time = message_info["lastMotionTime"]
+
+        current_time = datetime.now()
+        new_last_motion_time_dt = datetime.fromisoformat(new_last_motion_time[:-1])
+        time_difference = current_time - new_last_motion_time_dt
+
+        if person_detected and time_difference <= timedelta(seconds=30):
+            if current_last_motion_time != new_last_motion_time:
+                os.environ["RING_LAST_MOTION"] = new_last_motion_time
+                logging.info(
+                    f"Environment variable RING_LAST_MOTION={current_last_motion_time} set to {new_last_motion_time}"
+                )
+                response()
 
     client.on_message = on_message
 

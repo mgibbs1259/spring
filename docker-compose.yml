@@ -32,19 +32,19 @@ services:
     depends_on:
       - mosquitto
 
-  spring:
-    container_name: spring
-    depends_on:
-      ring-mqtt:
-        condition: service_started
-    restart: unless-stopped
-    build:
-      context: $PWD
-      dockerfile: Dockerfile.prod
-    env_file:
-      - $PWD/.env
-    networks:
-      - default
+  # spring:
+  #   container_name: spring
+  #   depends_on:
+  #     ring-mqtt:
+  #       condition: service_started
+  #   restart: unless-stopped
+  #   build:
+  #     context: $PWD
+  #     dockerfile: Dockerfile.prod
+  #   env_file:
+  #     - $PWD/.envs
+  #   networks:
+  #     - default
 
 networks:
   default:
