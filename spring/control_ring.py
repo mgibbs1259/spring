@@ -105,8 +105,11 @@ def set_mqtt_broker_response_to_person_detected_message(
         new_last_motion_time_dt = datetime.fromisoformat(new_last_motion_time[:-1])
         time_difference = current_time - new_last_motion_time_dt
 
-        if person_detected and time_difference <= timedelta(seconds=30):
-            if current_last_motion_time != new_last_motion_time:
+        if person_detected:
+            if (
+                current_last_motion_time is None
+                and time_difference <= timedelta(seconds=30)
+            ) or current_last_motion_time != new_last_motion_time:
                 os.environ["RING_LAST_MOTION"] = new_last_motion_time
                 logging.info(
                     f"Environment variable RING_LAST_MOTION={current_last_motion_time} set to {new_last_motion_time}"
