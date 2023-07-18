@@ -1,6 +1,6 @@
 # spring
 
-
+spring leverages the capabilities of Ring cameras and Rachio sprinklers to orchestrate a harmonious collaboration between surveillance and irrigation systems. To use spring, select the Ring cameras that monitor your desired property areas for human trespassers and their corresponding Rachio sprinkler zones. When the Ring cameras detect a person within the monitored areas, the Rachio sprinkler zones will activate for a predefined duration, ensuring a hilarious and memorable deterrent against unwanted visitors.
 
 # Requirements
 
@@ -25,9 +25,15 @@ If you don't have Docker already installed, follow these [instructions](https://
 2. Stop spring by running `docker compose down`
 
 # Development
+This section is still a work in progress.
 1. Start `VS Code`
 2. Open `spring`
 3. Run the `Dev Containers: Open Folder in Container...` command from the Command Palette or Quick Actions Status Bar
 4. Select the `Dockerfile.dev` file
 5. Wait until the development container is running
 6. Have fun developing!
+
+# Thank You
+* tsightler - for [ring-mqtt](https://github.com/tsightler/ring-mqtt)
+* rfverbruggen - for [rachiopy](https://github.com/rfverbruggen/rachiopy)
+* Last but not least, my neighbors who inspired me to pursue this project
