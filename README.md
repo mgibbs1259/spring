@@ -1,6 +1,6 @@
 # spring
 
-<img src="https://github.com/mgibbs1259/spring/assets/32986518/68b3ea94-a14b-42c2-baaa-0dee070c3b43" width="500" height="125">
+<img src="https://github.com/mgibbs1259/spring/assets/32986518/68b3ea94-a14b-42c2-baaa-0dee070c3b43" width="475" height="125">
 
 spring leverages the capabilities of Ring cameras and Rachio sprinklers to orchestrate a harmonious collaboration between surveillance and irrigation systems. To use spring, select the Ring cameras that monitor your desired property areas for human trespassers and their corresponding Rachio sprinkler zones. When the Ring cameras detect a person within the monitored areas, the Rachio sprinkler zones will activate for a predefined duration, ensuring a hilarious and memorable deterrent against unwanted visitors.
 
