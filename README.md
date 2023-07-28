@@ -2,7 +2,7 @@
 
 spring leverages the capabilities of Ring cameras and Rachio sprinklers to orchestrate a harmonious collaboration between surveillance and irrigation systems. To use spring, select the Ring cameras that monitor your desired property areas for human trespassers and their corresponding Rachio sprinkler zones. When the Ring cameras detect a person within the monitored areas, the Rachio sprinkler zones will activate for a predefined duration, ensuring a hilarious and memorable deterrent against unwanted visitors.
 
-# Configure spring
+# Configure
 
 If you don't have Docker already installed, follow these [instructions](https://www.docker.com/products/docker-desktop/). Then, create a copy of .example-env file and call it .env
 
@@ -17,12 +17,12 @@ If you don't have Docker already installed, follow these [instructions](https://
 1. You will need to modify RACHIO_API_KEY in the .env, filling in the Rachio API key. Go to `https://app.rach.io/login` and login. Go to `Settings` > `Get API Key`. Then, add the Rachio API key to the .env file.
 2. You will need to modify RACHIO_ZONE_IDS in the .env, filling in the sprinkler zone IDs. Run `python configure_sprinklers.py` to see a dictionary containing 'zone name': 'zone ID' in the console output. Then, add the zone IDs of interest to the .env file. **_Note:_** I believe that you can only run one sprinkler zone at a time. If you list multiple zone IDs, they will run sequentially in the order that you listed them in the .env file.
 
-# Run spring
+# Run
 
 1. Start spring by running `docker compose up -d`
 2. Stop spring by running `docker compose down`
 
-# Develop spring
+# Develop
 
 1. Start `VS Code`
 2. Open `spring`
